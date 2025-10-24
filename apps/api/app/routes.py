@@ -923,7 +923,7 @@ async def deduce_recipe_ingredients(request: dict):
                   "quantity": 0.0,
                   "unit": "g/ml/piece/etc",
                   "allergens": [
-                    {{"allergen": "marker_id", "certainty": "certain|probable"}}
+                    {{"allergen": "marker_id", "certainty": "certain|likely"}}
                   ]
                 }}
               ]
@@ -938,9 +938,9 @@ async def deduce_recipe_ingredients(request: dict):
         - Base quantities on 1 person serving
         - Use ONLY singular, specific ingredient names (NOT "pancetta or bacon" - choose ONE)
         - Choose the most common/traditional ingredient variant
-        - Each ingredient's "allergens" must be a JSON array of objects shaped exactly like {{"allergen": "<marker>", "certainty": "<certain|probable>"}}
+        - Each ingredient's "allergens" must be a JSON array of objects shaped exactly like {{"allergen": "<marker>", "certainty": "<certain|likely>"}}
         - Allowed markers are ONLY the canonical ids listed above
-        - Use "certain" when the allergen or marker is definitely present in the ingredient; use "probable" when it is likely but not guaranteed (e.g., shared fryers or garnish risk)
+        - Use "certain" when the allergen or marker is definitely present in the ingredient; use "likely" when it is probable but not guaranteed (e.g., shared fryers or garnish risk)
         - Use specific allergen markers: "meat" for any meat or animal derivative (beef, pork, chicken, gelatin, lard, etc.), "milk" for dairy products, "eggs" for egg products, "honey" for honey, "fish" for fish, "crustaceans" for shellfish, etc.
         - Do not use dietary markers like "vegan" or "vegetarian" - use factual allergen labels instead
         - Don't infer anything else and return only valid JSON with no prose

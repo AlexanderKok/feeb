@@ -8,6 +8,8 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 // Types
 // ============================================================================
 
+export type CertaintyLevel = "likely" | "certain" | "confirmed";
+
 export interface User {
   id: number;
   supabase_uid: string;
@@ -68,7 +70,7 @@ export interface RecipeIngredient {
   allergens: Array<{
     code: string;
     name: string;
-    certainty?: string;
+    certainty?: CertaintyLevel;
     canonical_code?: string | null;
     canonical_name?: string | null;
     family_code?: string | null;
@@ -119,7 +121,7 @@ export interface UpdateRecipeIngredientRequest extends Partial<CreateRecipeIngre
   allergens?: Array<{
     code: string;
     name: string;
-    certainty?: string;
+    certainty?: CertaintyLevel;
     canonical_code?: string | null;
     canonical_name?: string | null;
     family_code?: string | null;

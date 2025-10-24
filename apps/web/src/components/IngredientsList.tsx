@@ -418,15 +418,15 @@ export const IngredientsList = ({
                                       .map((allergen, allergenIndex) => {
                                         const definition = allergenFilterMap.get(allergen.code || '');
                                       const certaintyLabel = (
-                                        allergen.certainty || (ingredient.confirmed ? "confirmed" : "predicted")
+                                        allergen.certainty || (ingredient.confirmed ? "confirmed" : "likely")
                                       ).toLowerCase();
                                       const displayLabel = `${certaintyLabel.charAt(0).toUpperCase()}${certaintyLabel.slice(1)}`;
                                       const statusClassName =
                                         certaintyLabel === "confirmed"
                                           ? "text-primary"
-                                          : certaintyLabel === "likely"
-                                          ? "text-amber-600 dark:text-amber-300"
-                                          : "text-muted-foreground";
+                                          : certaintyLabel === "certain"
+                                          ? "text-green-600 dark:text-green-300"
+                                          : "text-amber-600 dark:text-amber-300";
                                       const Icon = definition?.Icon;
                                       const allergenDisplayName =
                                         allergen.name ?? definition?.name ?? allergen.code ?? "Allergen";

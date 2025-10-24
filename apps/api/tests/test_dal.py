@@ -280,9 +280,9 @@ async def test_get_recipe_with_details_normalizes_predicted_allergens(test_sessi
 
     predicted_payload = json.dumps(
         [
-            {"allergen": "Milk", "certainty": "high"},
-            {"allergen": "Peanuts", "certainty": "low"},
-            {"allergen": "mystery", "certainty": "high"},
+            {"allergen": "Milk", "certainty": "likely"},
+            {"allergen": "Peanuts", "certainty": "likely"},
+            {"allergen": "mystery", "certainty": "likely"},
         ]
     )
 
@@ -308,7 +308,7 @@ async def test_get_recipe_with_details_normalizes_predicted_allergens(test_sessi
     milk_entry = next((a for a in ingredient["allergens"] if a["code"] == "milk"), None)
     peanut_entry = next((a for a in ingredient["allergens"] if a["code"] == "peanuts"), None)
     assert milk_entry is not None and milk_entry["certainty"] == "likely"
-    assert peanut_entry is not None and peanut_entry["certainty"] == "possible"
+    assert peanut_entry is not None and peanut_entry["certainty"] == "likely"
 
 
 @pytest.mark.asyncio

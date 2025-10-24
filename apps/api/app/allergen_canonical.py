@@ -202,50 +202,50 @@ for entry in _CANONICAL_DATA:
 
 
 _CERTAINTY_NORMALIZATION_RULES: Dict[str, str] = {
-    "direct": "direct",
-    "confirmed": "direct",
-    "certain": "direct",
-    "definite": "direct",
-    "explicit": "direct",
-    "sure": "direct",
-    "inferred": "inferred",
-    "suggested": "inferred",
-    "estimated": "inferred",
-    "assumed": "inferred",
-    "high": "high",
-    "very high": "high",
-    "high confidence": "high",
+    # Map to "certain" - high confidence AI predictions
+    "certain": "certain",
+    "definite": "certain",
+    "explicit": "certain",
+    "sure": "certain",
+    "confirmed": "certain",
+    "direct": "certain",
+    
+    # Map to "likely" - moderate confidence AI predictions
     "likely": "likely",
-    "most likely": "likely",
     "probable": "likely",
+    "suggested": "likely",
+    "estimated": "likely",
+    "assumed": "likely",
+    "inferred": "likely",
+    "high": "likely",
+    "very high": "likely",
+    "high confidence": "likely",
+    "most likely": "likely",
     "strong": "likely",
-    "medium": "medium",
-    "moderate": "medium",
-    "medium confidence": "medium",
-    "possible": "possible",
-    "potential": "possible",
-    "maybe": "possible",
-    "uncertain": "possible",
-    "low": "low",
-    "low confidence": "low",
-    "speculative": "low",
-    "unknown": "unknown",
-    "n/a": "unknown",
-    "na": "unknown",
-    "unspecified": "unknown",
-    "predicted": "possible",
+    "medium": "likely",
+    "moderate": "likely",
+    "medium confidence": "likely",
+    "possible": "likely",
+    "potential": "likely",
+    "maybe": "likely",
+    "uncertain": "likely",
+    "low": "likely",
+    "low confidence": "likely",
+    "speculative": "likely",
+    "predicted": "likely",
+    
+    # Map unknown values to "likely" as default
+    "unknown": "likely",
+    "n/a": "likely",
+    "na": "likely",
+    "unspecified": "likely",
 }
 
 _UI_CERTAINTY_MAP: Dict[str, str] = {
-    "direct": "confirmed",
-    "high": "likely",
+    # Direct pass-through for the three allowed values
     "likely": "likely",
-    "probable": "likely",
-    "inferred": "likely",
-    "medium": "likely",
-    "possible": "possible",
-    "low": "possible",
-    "unknown": "possible",
+    "certain": "certain", 
+    "confirmed": "confirmed",
 }
 
 
@@ -293,11 +293,12 @@ def certainty_to_ui(value: Optional[str]) -> str:
     """Translate a normalized certainty value into UI vocabulary."""
 
     if not value:
-        return "predicted"
+        return "likely"
     mapped = _UI_CERTAINTY_MAP.get(value)
     if mapped:
         return mapped
-    return "predicted"
+    # Default to "likely" for any unmapped values
+    return "likely"
 
 
 def iter_all_aliases() -> Iterable[str]:

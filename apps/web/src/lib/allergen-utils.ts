@@ -1,9 +1,11 @@
 import { ALLERGEN_FILTERS } from "@/data/allergen-filters";
 
+export type CertaintyLevel = "likely" | "certain" | "confirmed";
+
 export type IngredientAllergenLike = {
   code?: string | null;
   name?: string | null;
-  certainty?: string | null;
+  certainty?: CertaintyLevel | null;
   canonicalCode?: string | null;
   canonicalName?: string | null;
   familyCode?: string | null;

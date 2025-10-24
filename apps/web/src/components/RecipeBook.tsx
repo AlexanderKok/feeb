@@ -82,7 +82,7 @@ export interface SavedDish {
     allergens?: Array<{
       code: string;
       name: string;
-      certainty?: string;
+      certainty?: "likely" | "certain" | "confirmed";
       canonicalCode?: string | null;
       canonicalName?: string | null;
       familyCode?: string | null;

@@ -259,7 +259,7 @@ async def link_ingredient_allergen(
     session: AsyncSession,
     ingredient_id: int,
     allergen_id: int,
-    certainty: str = "direct",
+    certainty: str = "likely",
     source: str = "off"
 ) -> None:
     """
@@ -269,7 +269,7 @@ async def link_ingredient_allergen(
         session: Database session
         ingredient_id: Ingredient ID
         allergen_id: Allergen ID
-        certainty: Certainty level ("direct", "inferred", "possible")
+        certainty: Certainty level ("likely", "certain", "confirmed")
         source: Data source (default: "off")
     """
     # Check if exists
@@ -1381,7 +1381,7 @@ async def add_ingredient_allergen(
     session: AsyncSession,
     ingredient_id: int,
     allergen_id: int,
-    certainty: str = "possible",
+    certainty: str = "likely",
     source: str = "llm",
 ) -> None:
     """
@@ -1391,7 +1391,7 @@ async def add_ingredient_allergen(
         session: Database session
         ingredient_id: Ingredient ID
         allergen_id: Allergen ID
-        certainty: Certainty level
+        certainty: Certainty level ("likely", "certain", "confirmed")
         source: Data source
     """
     from .models import IngredientAllergen

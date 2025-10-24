@@ -79,7 +79,7 @@ class IngredientAllergen(Base):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
     ingredient_id = mapped_column(Integer, ForeignKey("ingredient.id"), nullable=False)
     allergen_id = mapped_column(Integer, ForeignKey("allergen.id"), nullable=False)
-    certainty = mapped_column(String(50), default="direct")  # direct, inferred, possible
+    certainty = mapped_column(String(50), default="likely")  # likely, certain, confirmed
     source = mapped_column(String(50), nullable=False, default="off")
     
     # Relationships

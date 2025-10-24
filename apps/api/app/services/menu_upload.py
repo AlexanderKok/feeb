@@ -444,7 +444,7 @@ class MenuUploadService:
                                     session,
                                     ingredient_id=ingredient_id,
                                     allergen_id=allergen_id,
-                                    certainty=certainty or "possible",
+                                    certainty=certainty or "likely",
                                     source="llm",
                                 )
                     except (json.JSONDecodeError, KeyError) as e:
